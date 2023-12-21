@@ -22,23 +22,57 @@ function division(a,b) {
 }
 
 function operate(firstNumber, secondNumber, operator) {
+    firstNumber = Number(firstNumber);
+    secondNumber = Number(secondNumber);
+    
     switch(operator) {
             case `+`:
-                addition(firstNumber, secondNumber);
+                return addition(firstNumber, secondNumber);
                 break;
             case `-`:
-                subtraction(firstNumber, secondNumber);
+                return subtraction(firstNumber, secondNumber);
                 break;
             case `*`:
-                multiplication(firstNumber, secondNumber);
+                return multiplication(firstNumber, secondNumber);
                 break;
             case `/`:
-                division(firstNumber, secondNumber);
+                return division(firstNumber, secondNumber);
                 break;
     }
 }
 
-// console.log(addition(a,b));
-// console.log(subtraction(a,b));
-// console.log(multiplication(a,b));
-// console.log(division(a,b));
+const numButtons = document.querySelectorAll(`.numButton`);
+const currentNumDisplay = document.querySelector(`.currentNumber`);
+let currentNumber = ``;
+
+numButtons.forEach(button => {
+    button.addEventListener(`click`, () => {
+        appendNumber(button.textContent);
+    });
+});
+
+function appendNumber(inputNumber) {
+    currentNumDisplay.textContent = currentNumber;
+    currentNumDisplay.textContent += inputNumber;
+    currentNumber = currentNumDisplay.textContent;
+};
+
+const operButtons = document.querySelectorAll(`.operButton`);
+const history = document.querySelector(`.history`);
+
+operButtons.forEach(button => {
+    button.addEventListener(`click`, () => {
+        if (firstNumber === 0) {
+            operator = button.id;
+            firstNumber = currentNumber;   
+        } else {
+            secondNumber = currentNumber;
+            firstNumber = operate(firstNumber, secondNumber, operator);
+            operator = button.id;
+        }
+
+        history.textContent = `${firstNumber}  ${operator}`;
+        currentNumDisplay.textContent = firstNumber;
+        currentNumber = ``;
+    });
+});

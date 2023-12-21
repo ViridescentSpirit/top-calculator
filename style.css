@@ -8,7 +8,7 @@ h1 {
 }
 
 .calculator {
-    padding: 10px;
+    padding: 20px;
     border-style: solid;
     border-color: black;
     border-radius: 20px;
@@ -25,14 +25,32 @@ h1 {
 }
 
 .display {
-    height: 100px;
+    height: 75px;
     border-style: solid;
     border-color: black;
     border-radius: 5px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    gap: 5px;
 }
 
-button {
+.history .currentNumber {
+    flex-grow: 1;
+}
+
+.currentNumber {
+    font-size: 30px;
+}
+
+.history {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.row > button {
     padding: 10px;
     width: 50px;
     aspect-ratio: 1/1;
@@ -41,6 +59,20 @@ button {
     vertical-align: center;
     border-radius: 50%;
     border-width: 1px;
+}
+
+.clearButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    width: auto;
+}
+
+.clearButton {
+    border-radius: 10px;
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 25px;
 }
 
 .numButton {
